@@ -17,5 +17,5 @@ def vectorize(collection,document):
 # Add the vector embedding to the document under a new key "vector_embedding"
     document["titleEmbedding"] = embedding
 # Update the document in the collection
-    collection.update_one({"_id": doc["_id"]}, {"$set": {"titleEmbedding": embedding}})
+    collection.update_one({"_id": document["_id"]}, {"$set": {"titleEmbedding": embedding}})
     return
