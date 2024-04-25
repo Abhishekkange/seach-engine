@@ -10,8 +10,8 @@ load_dotenv()
 mongo_url = os.environ.get('MONGO_URL')
 gemini_api_key = os.environ.get('GEMINI_API_KEY')
 
-def dbconnect(uri):
-    conn = MongoClient(uri)
+def dbconnect():
+    conn = MongoClient(mongo_url)
     print("Connected to database")
     return conn
 
