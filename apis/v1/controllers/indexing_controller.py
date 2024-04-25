@@ -1,6 +1,10 @@
-from app import app
-from Flask import request,jsonify
+
+from flask import request,jsonify
 from models.indexing_model import start_indexing_mod
+
+@app.get('/')
+def starter():
+    return "Server is running"
 
 
 @app.post('/start-indexing')

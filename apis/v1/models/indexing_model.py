@@ -1,12 +1,7 @@
-from Flask import request , jsonify
-from seach_module.store_search_module.vectorizer import vectorize
-from seach_module.store_search_module.utilities import dbconnect
+from flask import request , jsonify
+from ..search_module.store_search_module.vectorizer import vectorize
+from ..search_module.store_search_module.utilities import dbconnect
 import os
-
-
-
-
-
 
 
 def start_indexing_mod(ids,database):
