@@ -1,6 +1,5 @@
 from flask import request , jsonify
-from ..search_module.store_search_module.vectorizer import vectorize
-from ..search_module.store_search_module.utilities import dbconnect
+from vectorizer import vectorize
 import os
 
 
