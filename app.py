@@ -30,40 +30,6 @@ client = dbconnect("mongodb+srv://NearbyKart_production:vgDxWwhHwhdWkSO0@cluster
 # for doc in documents:
 #     vectorize(collection,doc)
 
-
-
-
-
-# documents = getSearchResults("dress",collection,index="vector_ind",limit=3)
-
-# for doc in documents:
-#     print(doc["name"].get("en"))
-
-#Routes here 
-def convert_ids_to_string(documents):
-    for i, doc in enumerate(documents):
-        # Check if '_id' field exists in the document
-        if '_id' in doc:
-            # Convert '_id' field to string
-            doc['_id'] = str(doc['_id'])
-        else:
-            print(f"Document {i} does not have an '_id' field.")
-        # If categories exist, convert category _id fields to string
-        if 'categories' in doc:
-            for j, category in enumerate(doc['categories']):
-                if '_id' in category:
-                    category['_id'] = str(category['_id'])
-                else:
-                    print(f"Category {j} in document {i} does not have an '_id' field.")
-        # If subcategories exist, convert subcategory _id fields to string
-        if 'subcategories' in doc:
-            for k, subcategory in enumerate(doc['subcategories']):
-                if '_id' in subcategory:
-                    subcategory['_id'] = str(subcategory['_id'])
-                else:
-                    print(f"Subcategory {k} in document {i} does not have an '_id' field.")
-
-
 @app.route("/", methods=['GET'])
 def start_server():
     return "server running"
@@ -89,5 +55,26 @@ def search():
    
 
     return json_documents
+
+
+@app.route("/searchindexing", methods=['POST'])
+def index_documents():
+
+    data = request.json
+    ids = data.get('list')
+    id_list = list(ids)
+    database = data.get('storeId')  # Use 'storeId' as the key to retrieve the database name from the JSON data
+    db = client[database]
+    collection = db["products"]
+
+    for doc_id in id_list:
+        document = collection.find_one({"_id": ObjectId(doc_id)})
+        type(document)
+        vectorize(collection,document)
+    
+    return "completed"
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 #main here
