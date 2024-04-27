@@ -22,13 +22,15 @@ os.environ['PYTHONDONTWRITEBYTECODE'] = '1'
 
 # Main
 client = dbconnect("mongodb+srv://NearbyKart_production:vgDxWwhHwhdWkSO0@cluster0.nkwn8jm.mongodb.net/")
-# db = client["KangeCollection"]
+db = client["UrbanSoles"]
 # collection = db["products"]
 
-# documents = collection.find().limit(3)
+# documents = collection.find()
 
 # for doc in documents:
 #     vectorize(collection,doc)
+
+# print("done vectorizing")
 
 @app.route("/", methods=['GET'])
 def start_server():
