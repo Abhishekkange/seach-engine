@@ -1,8 +1,13 @@
 from query_parser import getSearchResults
+from utilities import dbconnect
 
-def search_mod(query):
+def search_mod(query,database,index,limit):
 
-    result = getSearchResults(query)
+    client = dbconnect()
+    db = client[database]
+    collection = db["products"]
+
+    result = getSearchResults(query,collection=collection,limit=limit,index=index)
     return result
 
 abc = search_mod('dress')

@@ -1,5 +1,4 @@
 from flask import Flask
-from controllers import indexing_controller,searching_controller
 
 app = Flask(__name__)
 

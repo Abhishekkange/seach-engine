@@ -1,5 +1,6 @@
 from flask import request , jsonify
 from vectorizer import vectorize
+
 import os
 
 
