@@ -91,5 +91,3 @@ def search():
     return json_documents
 
 #main here
-if __name__ == '__main__':
-    app.run(debug=True,port=7800)
