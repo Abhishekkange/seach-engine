@@ -51,7 +51,7 @@ def search():
     result = getSearchResults(query=query,collection=collection,limit=limit,index=index)
 
     result_list = list(result)
-    json_documents = json_util.dumps(result_list)
+    json_documents = json_util.dumps({"data":result_list})
     # json_documents = [json.dumps(doc, default=json_util.default) for doc in result_list]
 
    
